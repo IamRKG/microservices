@@ -16,4 +16,4 @@ app.post('/products', async (req: Request, res: Response) => {
   res.send('Product created!');
 });
 
-app.listen(6000);
+export default app;

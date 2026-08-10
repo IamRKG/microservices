@@ -4,7 +4,7 @@
     test: {
       globals: true,                                                                                                                      
       environment: 'node',                                                                                                              
-      include: ['src/tests/unit/**/*.test.ts'],                                                                                         
+      include: ['src/tests/unit/**/*.test.ts', 'src/tests/integration/**/*.test.ts'],                                                                                         
       coverage: {                             
         provider: 'v8',                   
         reporter: ['text', 'json', 'json-summary', 'html'],

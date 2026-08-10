@@ -7,13 +7,16 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
+    "dev": "tsx src/server.ts",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+     "test:unit": "vitest run --reporter=verbose src/tests/unit",
+    "test:integration": "vitest run --reporter=verbose src/tests/integration"                                                               
   },
   "dependencies": {
     "dotenv": "^17.4.2",
