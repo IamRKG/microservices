@@ -1,13 +1,20 @@
-  import { defineConfig } from 'vitest/config'                                                                                            
-                                              
+  import { defineConfig } from 'vitest/config'
+
   export default defineConfig({                                                                                                           
-    test: {                                                                                                                             
+    test: {
       globals: true,                                                                                                                      
-      environment: 'node',
-      coverage: {                                                                                                                         
-        provider: 'v8',                                                                                                                 
-        reporter: ['text', 'json', 'html'],                                                                                             
-        exclude: ['node_modules/', 'dist/'],
-      },                                      
-    },                                    
+      environment: 'node',                                                                                                              
+      include: ['src/tests/unit/**/*.test.ts'],                                                                                         
+      coverage: {                             
+        provider: 'v8',                   
+        reporter: ['text', 'json', 'json-summary', 'html'],
+        exclude: ['node_modules/', 'dist/', 'drizzle/', 'src/tests/'],                                                                    
+        thresholds: {                         
+          lines: 70,                                                                                                                      
+          functions: 70,                                                                                                                
+          branches: 70,                                                                                                                   
+          statements: 70,
+        },                                                                                                                                
+      },                                                                                                                                
+    },                                                                                                                                  
   })

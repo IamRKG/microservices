@@ -12,7 +12,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  NODE_VERSION: '22'
+  NODE_VERSION: '24'
 
 jobs:
   # ─── Stage 1: Code Quality (runs in parallel) ──────────────────────────────
@@ -153,12 +153,13 @@ jobs:
         run: npx tsc
         continue-on-error: true  # Remove once noEmit is removed from tsconfig
       - name: Verify package structure
-        run: node --input-type=module <<'EOF'
-          import { readFileSync } from 'fs'
-          const pkg = JSON.parse(readFileSync('package.json', 'utf8'))
-          if (!pkg.name || !pkg.version) throw new Error('Invalid package.json')
-          console.log(`Package: ${pkg.name}@${pkg.version}`)
-          EOF
+        run: |
+          node --input-type=module --eval "
+            import { readFileSync } from 'fs';
+            const pkg = JSON.parse(readFileSync('package.json', 'utf8'));
+            if (!pkg.name || !pkg.version) throw new Error('Invalid package.json');
+            console.log('Package: ' + pkg.name + '@' + pkg.version);
+          "
 
   # ─── Stage 5: CI Gate (all required jobs must pass) ────────────────────────
 
