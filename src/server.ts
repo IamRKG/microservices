@@ -1,0 +1,2 @@
+  import app from './app.ts'                                                                                                              
+  app.listen(6000, () => console.log('Server running on port 6000')) 
