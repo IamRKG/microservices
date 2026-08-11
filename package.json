@@ -8,6 +8,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx src/server.ts",
+    "studio": "drizzle-kit studio",
+    "studio:test": "node --env-file=.env.test node_modules/.bin/drizzle-kit studio --port 4984 --verbose",
+    "migrate": "drizzle-kit migrate",
+    "migrate:test": "node --env-file=.env.test node_modules/.bin/drizzle-kit migrate",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
@@ -15,8 +19,8 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-     "test:unit": "vitest run --reporter=verbose src/tests/unit",
-    "test:integration": "vitest run --reporter=verbose src/tests/integration"                                                               
+    "test:unit": "vitest run --reporter=verbose src/tests/unit",
+    "test:integration": "vitest run --reporter=verbose src/tests/integration"
   },
   "dependencies": {
     "dotenv": "^17.4.2",
