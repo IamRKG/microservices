@@ -90,7 +90,7 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - name: Run unit tests with coverage
-        run: npm run test:coverage
+        run: npm run test:unit -- --coverage
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
         with:
@@ -134,7 +134,7 @@ jobs:
       - name: Run database migrations
         run: npx drizzle-kit migrate
       - name: Run integration tests
-        run: npm test
+        run: npm run test:integration
 
   # ─── Stage 4: Build Verification ───────────────────────────────────────────
 
