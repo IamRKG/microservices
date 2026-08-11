@@ -5,6 +5,7 @@ import { db } from './index.ts';
 const app: Express = express();
 app.use(express.json());
 
+
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World!');
 });
