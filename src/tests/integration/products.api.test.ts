@@ -4,6 +4,7 @@ import { drizzle } from 'drizzle-orm/node-postgres'
 import { productsTable } from '../../db/schema.ts'
 import app from '../../app.ts'
 
+
 const testDb = drizzle(process.env.DATABASE_URL!)
 
 beforeAll(async () => {
@@ -15,12 +16,12 @@ afterEach(async () => {
 })
 
 describe('POST /products', () => {
-  it('should create a product and return 200', async () => {
+  it('should create a product and return 201', async () => {
     const res = await request(app)
       .post('/products')
       .send({ name: 'Milk', price: 100, description: 'Fresh milk' })
 
-    expect(res.status).toBe(200)
+    expect(res.status).toBe(201)
   })
 
   it('should persist the product in the database', async () => {
@@ -34,7 +35,14 @@ describe('POST /products', () => {
     expect(products[0].price).toBe(50)
   })
 
-  it.todo('should return 400 when name is missing — input validation not yet implemented')
+  it('should return 400 when name is missing', async () => {
+    const res = await request(app)
+      .post('/products')
+      .send({ price: 100 })
+
+    expect(res.status).toBe(400)
+    expect(res.body.error).toBe('Validation failed')
+  })
 })
 
 describe('GET /', () => {

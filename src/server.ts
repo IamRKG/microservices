@@ -1,21 +1,22 @@
 import app from './app.ts'
+import logger from './logger.ts'
 import { pool } from './index.ts'
 
 const PORT = process.env.PORT ?? 6000
 
-const server = app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
+const server = app.listen(PORT, () => logger.info(`Server running on port ${PORT}`))
 
 // Graceful shutdown
 const shutdown = async () => {
-  console.log('Shutting down server...')
+  logger.info('Shutting down server...')
   server.close(async () => {
-    console.log('Server closed')
+    logger.info('Server closed')
     await pool.end()
     process.exit(0)
   })
   // Force exit after 10s if connections don't close
   setTimeout(() => {
-    console.error('Forced exit after timeout')
+    logger.error('Forced exit after timeout')
     process.exit(1)
   }, 10000)
 }
