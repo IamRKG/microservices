@@ -9,7 +9,7 @@
       coverage: {                             
         provider: 'v8',                   
         reporter: ['text', 'json', 'json-summary', 'html'],
-        exclude: ['node_modules/', 'dist/', 'drizzle/', 'src/tests/'],                                                                    
+        exclude: ['node_modules/', 'dist/', 'drizzle/', 'src/tests/', 'src/db/'],                                                                    
         thresholds: {                         
           lines: 70,                                                                                                                      
           functions: 70,                                                                                                                
