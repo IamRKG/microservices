@@ -4,8 +4,8 @@ import { pinoHttp } from 'pino-http';
 import logger from './logger.ts';
 import { categoriesTable, productsTable } from './db/schema.ts';
 import { db } from './index.ts';
-import { createCategorySchema } from './schemas/category.schema.ts';
-import { createProductSchema } from './schemas/product.schema.ts'
+import { createCategorySchema } from './validators/category.validator.ts';
+import { createProductSchema } from './validators/product.validator.ts'
 
 const isDuplicateKeyError = (err: unknown): boolean => {
   if (typeof err !== 'object' || err === null) return false;

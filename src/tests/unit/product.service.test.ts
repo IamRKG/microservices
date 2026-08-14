@@ -12,7 +12,7 @@ vi.mock('../../index.ts', () => ({
 
 import { db } from '../../index.ts'
 import { productsTable } from '../../db/schema.ts'
-import { createProductSchema } from '../../schemas/product.schema.ts'
+import { createProductSchema } from '../../validators/product.validator.ts'
 
 describe('Products - DB insert', () => {
   beforeEach(() => {
