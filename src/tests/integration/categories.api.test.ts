@@ -61,7 +61,8 @@ describe('POST /categories', () => {
       .send({ name: 'Dairy' })
 
     expect(res.status).toBe(409)
-    expect(res.body.error).toBe("Category 'Dairy' already exists")
+    expect(res.body.error).toBe('Resource already exists')
+    expect(res.body.code).toBe('CONFLICT')
   })
 })
 
